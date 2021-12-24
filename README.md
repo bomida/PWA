@@ -40,4 +40,7 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
 
 <br>
 
-### ⚡️제작에
+### ⚡️제작에 필요한 ㄱ
+
+- App-like & Discoverableㅓ
+- App-like & Discoverable
