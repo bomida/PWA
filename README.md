@@ -1,6 +1,10 @@
 ## Progressive Web App 설정하는 법
 
 
+#### 👉  [PWA를 활용한 프로젝트 보러가기](https://github.com/bomida/mini-shoppingmall)
+
+<br>
+
 ### 📝 목차
 - [PWA 란](#PWA-란)
 - [특징](#특징)
@@ -160,8 +164,10 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
  - gitpages : HTTPS 링크를 생성하기 위해서는 다양한 방법이 있지만 간단하게 만들 수 있는 깃헙 페이지를 사용한다.
  - [Maskable.app](https://maskable.app/editor) : PWA를 위한 아이콘을 만들 수 있는 사이트이다.
   
- - 그 외에 참고한 영상 링크
-   [드림코딩by엘리](https://www.youtube.com/watch?v=FEBkne7Nyu4&t=621s)
-   [얄팍한 코딩사전](https://www.youtube.com/watch?v=NMdnzvPsGu8&t=559s)
+<br>  
+  
+ ### 그 외에 참고한 영상 링크
+  [드림코딩by엘리](https://www.youtube.com/watch?v=FEBkne7Nyu4&t=621s)<br>
+  [얄팍한 코딩사전](https://www.youtube.com/watch?v=NMdnzvPsGu8&t=559s)
   
   
