@@ -5,9 +5,9 @@
 ### 📝 목차
 - [PWA 란](#PWA-란)
 - [특징](#특징)
-- [Manifest란?](#Manifest란?)
-- [Service Worker란?](#Service-Worker란?)
-- [index.html](#index.html)
+- [Manifest란](#Manifest란)
+- [Service Worker란](#Service-Worker란)
+- [index.html](#index)
 - [유용한 사이트 또는 툴](#유용한-사이트-또는-툴)
 
 <br>
@@ -45,7 +45,7 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
 
 <br>
 
-## Manifest란?
+## Manifest란
    매니페스트는 웹을 데스크톱 및 모바일장칭 설치할 때 __아이콘, 이름, 시작시 시작해야하는 경로__ 등의 내용을 브라우저에 알려주는 json파일입니다.
    <br>manifest를 설정하게 되면 해당 앱을 설치할 때의 아이콘을 설정할 수 있고, 처음 앱을 활성화 시킬 때 스플래시 이미지를 보여주어
    <br>좀 더 앱과 가깝게 느낄 수 있도록 해줍니다.
@@ -150,7 +150,7 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
 
 <br>
 
-## Service Worker란?
+## Service Worker란
 서비스워커는 브라우저가 백그라운드에서 실행하는 스크립트로 웹페이지와는 별개로 동작하며 브라우저와 웹서버 간의 미들웨어 역할을 수행합니다.
 <br>서비스 워커를 사용하게 되면 대표적으로 다음과 같은 기능들을 사용할 수 있습니다.
   - web-push service
