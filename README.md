@@ -1,4 +1,4 @@
-## Progressive Web App 설정하는 법
+# Progressive Web App 설정하는 법
 
 
 #### 👉  [PWA를 활용한 프로젝트 보러가기](https://github.com/bomida/mini-shoppingmall)
@@ -13,7 +13,7 @@
 
 <br>
 
-### PWA 란
+## PWA 란
 모바일 앱고 웹 기술의 장점을 결합한 것
 
   - 브라우저를 통해 처음 방문한 사용자에게 유용하며, 설치가 필요하지 않다.<br>
@@ -31,22 +31,110 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
 
 <br>
 
-### 특징
+## 특징
 - 반응형(Responsive) 웹 디자인
 - App-like & Discoverable
-  - 설치 배너가 생성된다.
-  - 앱 아이콘이 생성된다.
+  - 설치 배너가 생성됨
+  - 앱 아이콘이 생성됨
 - Engageable
   - Push 알람
-  - PC와 단말기 커버가 가능하다.
+  - PC와 단말기 커버가 가능
 - Connectivity
-  - Online = Offline 경험을 제공한다.
+  - Online = Offline 경험을 제공함
 - Safe
-  - 제약사항 기보 기술 -Https 프로토콜이 있어야 가능하다.
+  - 제약사항 기보 기술 -Https 프로토콜이 있어야 가능
 
 <br>
 
-### 제작에 필요한 것
+## Manifest란?
+   매니페스트는 웹을 데스크톱 및 모바일장칭 설치할 때 __아이콘, 이름, 시작시 시작해야하는 경로__ 등의 내용을 브라우저에 알려주는 json파일입니다.
+   <br>manifest를 설정하게 되면 해당 앱을 설치할 때의 아이콘을 설정할 수 있고, 처음 앱을 활성화 시킬 때 스플래시 이미지를 보여주어
+   <br>좀 더 앱과 가깝게 느낄 수 있도록 해줍니다.
+   
+   <br>
+   
+   ###  manifest 속성
+   
+   #### name, short_name
+   - __name__ : 앱을 설치하고나면 icon에 표시되는 이름입니다.
+   - __short_name__ : 사용자의 홈 화면이나 name을 보여주기에는 제한적인 장소에서 표시되는 이름입니다.
+    
+   #### display
+   - __display__ : 설치하 앱으 실행할때 브라우저 처럼 보일지 앱처럼 보일지 아예 전체화면으로 보일지 등에 대한 설정을 할 수 있습니다.
+   <br>속성 옵션에는 `fullscreen`, `minimul-ui`, `standalone`, `browser`가 있습니다.
+   <br>browser : 일반 브라우저와 동일하게 보입니다.
+   <br>standalone : 다른 앱처럼 최상단에 상태표시줄을 제외한 전체화면을 보입니다..
+   <br>fullscreen : 상태표시줄도 제외한 전체화면으로 보여줍니다.(예, 게임)
+   <br>miniul-ui : fullscreen고 비슷하지만 뒤로가기, 새로고침 등 최소한의 영역만 제공합니다.(모바일 크롬 전용)
+   
+   #### orientation
+   - __orientation__ : 앱이 실행될 때 `가로`, `세로`의 방향을 선택할 수 있습니다. 이 옵션은 선택사항이므로 고정해야하는 상황이 아니라면 사용하지 않아도 됩니다.
+
+   #### icons
+   - __icons__ : 
+   
+   <br>
+   
+   ### manifest.json
+   ```
+   {
+    "name": "Paint Board",
+    "short_name": "Paint Board",
+    "display": "standalone",
+    "orientation": "portrait",
+    "dir": "ltr",
+    "scope": "/",
+    "start_url": "/index.html",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "purpose": "any maskable",
+    "icons": [
+      {
+        "src": "icons/icon-48x48.png",
+        "sizes": "48x48",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-72x72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-128x128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+     ]
+   }
+   ```
+   
+   이렇게 만든 manifest파일을 index.html 파일에 link 태그를 사용하여 추가해주세요.
+   ```
+   <link rel="manifest" href="/manifest.json">
+   ```
+
+
+## 제작에 필요한 것
  - __보안 연결(HTTPS)__ : PWA는 신뢰할 수 있는 연결 상태에서만 동작학 때문에, 보안 연결을 통해서 서비스를 제공해야한다.<br>
   단지 보안 상의 이유 뿐만이 아니라, 사용자들의 신뢰를 얻기 위해섣 아주 중요한 부분이다.
  - __오프라인(offline.html)__ : 오프라인 시 보여 줄 마크업 파일이 있어야한다.
@@ -159,14 +247,15 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
 
 <br>
 
-### 유용한 사이트 또는 툴
- - lighthouse : 크롬에 내장된 PWA 설정을 하기에 적합한지를 체크해준다.
- - gitpages : HTTPS 링크를 생성하기 위해서는 다양한 방법이 있지만 간단하게 만들 수 있는 깃헙 페이지를 사용한다.
- - [Maskable.app](https://maskable.app/editor) : PWA를 위한 아이콘을 만들 수 있는 사이트이다.
+## 유용한 사이트 또는 툴
+ - [PWA builder](https://www.pwabuilder.com) : 웹앱이 PWA화 되기에 적합한지 검사할 수 있고, 부족한 파일들을 생성시켜줘서 간편하게 스토어에 런칭할 수 있게 해줍니다.
+ - lighthouse : 더욱 디테일한 체크를 하고싶다면 확장프로그램을 설치하면 확인할 수 있습니다.
+ - [Maskable.app](https://maskable.app/editor) : PWA를 위한 아이콘을 만들 수 있는 사이트입니다.
+ - [깃헙 페이지를 위한 serviceWorker](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e) : 깃헙 페이지로 웹앱을 만들 때 참고할만한 service worker 템플릿입니다.
   
 <br>  
   
- ### 그 외에 참고한 영상 링크
+ ## 그 외에 참고한 영상 링크
   [드림코딩by엘리](https://www.youtube.com/watch?v=FEBkne7Nyu4&t=621s)<br>
   [얄팍한 코딩사전](https://www.youtube.com/watch?v=NMdnzvPsGu8&t=559s)
   
