@@ -1,14 +1,11 @@
 # Progressive Web App 설정하는 법
 
-
-#### 👉  [PWA를 활용한 프로젝트 보러가기](https://github.com/bomida/mini-shoppingmall)
-
 <br>
 
 ### 📝 목차
 - [PWA 란](#PWA-란)
 - [특징](#특징)
-- [제작에 필요한 것](#제작에-필요한-것)
+- [Manifest란?](#Manifest란?)
 - [유용한 사이트 또는 툴](#유용한-사이트-또는-툴)
 
 <br>
@@ -56,22 +53,38 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
    ###  manifest 속성
    
    #### name, short_name
-   - __name__ : 앱을 설치하고나면 icon에 표시되는 이름입니다.
-   - __short_name__ : 사용자의 홈 화면이나 name을 보여주기에는 제한적인 장소에서 표시되는 이름입니다.
+   __name__ : 앱을 설치하고나면 icon에 표시되는 이름입니다.
+   __short_name__ : 사용자의 홈 화면이나 name을 보여주기에는 제한적인 장소에서 표시되는 이름입니다.
     
    #### display
-   - __display__ : 설치하 앱으 실행할때 브라우저 처럼 보일지 앱처럼 보일지 아예 전체화면으로 보일지 등에 대한 설정을 할 수 있습니다.
-   <br>속성 옵션에는 `fullscreen`, `minimul-ui`, `standalone`, `browser`가 있습니다.
-   <br>browser : 일반 브라우저와 동일하게 보입니다.
-   <br>standalone : 다른 앱처럼 최상단에 상태표시줄을 제외한 전체화면을 보입니다..
-   <br>fullscreen : 상태표시줄도 제외한 전체화면으로 보여줍니다.(예, 게임)
-   <br>miniul-ui : fullscreen고 비슷하지만 뒤로가기, 새로고침 등 최소한의 영역만 제공합니다.(모바일 크롬 전용)
+   __display__ : 설치하 앱으 실행할때 브라우저 처럼 보일지 앱처럼 보일지 아예 전체화면으로 보일지 등에 대한 설정을 할 수 있습니다.
+     <br>속성 옵션에는 `fullscreen`, `minimul-ui`, `standalone`, `browser`가 있습니다.
+     <br>browser : 일반 브라우저와 동일하게 보입니다.
+     <br>standalone : 다른 앱처럼 최상단에 상태표시줄을 제외한 전체화면을 보입니다..
+     <br>fullscreen : 상태표시줄도 제외한 전체화면으로 보여줍니다.(예, 게임)
+     <br>miniul-ui : fullscreen고 비슷하지만 뒤로가기, 새로고침 등 최소한의 영역만 제공합니다.(모바일 크롬 전용)
    
    #### orientation
-   - __orientation__ : 앱이 실행될 때 `가로`, `세로`의 방향을 선택할 수 있습니다. 이 옵션은 선택사항이므로 고정해야하는 상황이 아니라면 사용하지 않아도 됩니다.
+   __orientation__ : 앱이 실행될 때 `가로`, `세로`의 방향을 선택할 수 있습니다.
+   이 옵션은 선택사항이므로 고정해야하는 상황이 아니라면 사용하지 않아도 됩니다.
+
+   #### start_url
+   __start_url__ : 홈 화면에 설치한 앱을 시작할 때 처음에 시작할 위치를 정합니다.
+
+   #### theme_color
+   __theme_color__ : 상단부의 테마 부분의 색상을 지정할 수 있습니다. 단, hex코드로 지정해야합니다.
+
+   #### background_color
+   __background_color__ : 앱이 처음 시작될 때 `splashscreen`에서 사용하기 위해 사용됩니다. 단, hex코드로 지정해야합니다.
 
    #### icons
-   - __icons__ : 
+   __icons__ : 홈화면에 추가하면 화면에 보여지기위해 사용하는 아이콘을 설정하는 옵션입니다.
+     <br>앱실행, 작업 전환, 스플래시 화면 등의 장소에 사용하게 됩니다.
+     <br>safari 브라우저에서는 이를 지원하지 않아 head에 다음과 같은 태그를 추가하여 브라우징 이슈를 해결해야합니다.
+     ```
+     <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192x192.png">
+     <link rel="apple-touch-icon" sizes="512x512" href="/images/icons/icon-512x512.png">
+     ```
    
    <br>
    
@@ -133,125 +146,110 @@ PWA로 만들어진 대표적인 웹사이트로는 네이버(Naver), 스타벅�
    <link rel="manifest" href="/manifest.json">
    ```
 
+<br>
 
-## 제작에 필요한 것
- - __보안 연결(HTTPS)__ : PWA는 신뢰할 수 있는 연결 상태에서만 동작학 때문에, 보안 연결을 통해서 서비스를 제공해야한다.<br>
-  단지 보안 상의 이유 뿐만이 아니라, 사용자들의 신뢰를 얻기 위해섣 아주 중요한 부분이다.
- - __오프라인(offline.html)__ : 오프라인 시 보여 줄 마크업 파일이 있어야한다.
- - __인덱스 파일 추가 링크__ : 
-``` html
-  <!-- charset 코드 바로 아래에 넣는다. -->
-  <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="/images/192x192.png" />
+## Service Worker란?
+서비스워커는 브라우저가 백그라운드에서 실행하는 스크립트로 웹페이지와는 별개로 동작하며 브라우저와 웹서버 간의 미들웨어 역할을 수행합니다.
+<br>서비스 워커를 사용하게 되면 대표적으로 다음과 같은 기능들을 사용할 수 있습니다.
+  - web-push service
+  - 백그라운드 동기화 기능
+  - 네트워크 요청을 가로채 캐쉬 상호작용
+이때 서비스워커는 `https` 환경 혹은 `localhost` 환경에서만 동작하기 때문에 local환경에서 특정 도메인을 반드시 사용해야 하는 경우
+<br>이에 대해서도 반드시 `https` 설정을 해야합니다. 그리고 서비스워커(serviceWorker)에서는 기존의 자바스크립트와 다른 쓰레드에서
+<br>사용되기 때문에 `self`를 통해 `this`를 접근할 수 있습니다.
 
-  <!-- header 영역의 제일 하단에 추가한다. -->
-  <script type="module">
-    import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-    const el = document.createElement('pwa-update');
-    document.body.appendChild(el);
-  </script>
-```
- 
- - __서비스 작업자(service worker)__ : 서비스 작업자는 백그라운드에서 실행되는 스크립트이다.<br>
-  서비스 작업자는 네트워크와 관련된 요청의 처리를 도와주기 때문에, 그 점에 대해서는 걱정하지 않고 더욱 복잡한 작업을 수행할 수 있다.
-``` Javascript
-  // This is the "Offline page" service worker
+   ### pwabuilder-sw.js
+   ```
+   // This is the "Offline page" service worker
 
-  importScripts(
-   'https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js'
-  );
-
-  const CACHE = 'pwabuilder-page';
-
-  const offlineFallbackPage = 'offline.html';
-
-  self.addEventListener('message', (event) => {
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-      self.skipWaiting();
-    }
-  });
-
-  self.addEventListener('install', async (event) => {
-    event.waitUntil(
-      caches.open(CACHE).then((cache) => cache.add(offlineFallbackPage))
-    );
-  });
-
-  if (workbox.navigationPreload.isSupported()) {
-    workbox.navigationPreload.enable();
-  }
-
-  self.addEventListener('fetch', (event) => {
-    if (event.request.mode === 'navigate') {
-      event.respondWith(
-        (async () => {
-          try {
-            const preloadResp = await event.preloadResponse;
-
-            if (preloadResp) {
-              return preloadResp;
-            }
-
-            const networkResp = await fetch(event.request);
-            return networkResp;
-          } catch (error) {
-            const cache = await caches.open(CACHE);
-            const cachedResp = await cache.match(offlineFallbackPage);
-            return cachedResp;
-          }
-        })()
+      importScripts(
+       'https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js'
       );
-    }
-  });
-```
 
- - __매니페스트 파일(manifest file, 설정 파일)__ : 이것은 제이슨(JSON, 용량이 적은 데이터를 교환하 위한 형식) 파일이며,<br>
-  PWA가 표시되고 기능하는 방식에 대한 정보들이 포함되어있는 것이다. 여기에서 __PWA의 이름, 설명, 아이콘, 색상 등을 지정할 수 있다.__  
-    - start_url: 앱이 시작되어야하는 위치를 지정해야한다.<br>
-      사용자들이 PWA에서 개발자가 원하는 특정한 페이지에서 시작하도록 설정하는 것이 좋다.
-    - display: 여러분이 보여주고 싶은 브라우저 UI의 타입을 지정할 수 있다.<br>
-      설정할 수 있는 옵션으로는 fullscreen(전체화면), standalne(스텐드얼론, 네트워크 연결되지 않은 상태에서도 스스로 동작할 수 있는 것), minimal-ui(최소화된 UI), the standard browser interface(브라우저 표준 인터페이스)가 있다.
-  
-``` JavaSript
-  //  manifest.json 파일 구성
-  {
-    "short_name": "React App",           // 홈 화면에 표시할 약식 이름
-    "name": "Create React App Sample",   // 웹 앱의 이름
-    "start_url": ".",                    // 앱이 시작할 때 실행할 초기 문서이다. 보통 index.html로 설정한다.
-    "display": "standalone",             // 앱을 표시하는 방식입니다(전체 화면, 독립형(standalone), 최소 UI, 또는 브라우저).
-    "theme_color": "#000000",            // 운영 체제에 의해 사용될 UI를 위한 주요 색상
-    "background_color": "#ffffff",       // 스플래시 화면과 설치하는 동안 사용될 배경 색상
-    "lang": "en",                        // 세팅 언어
-    "icons": [                           // 아이콘들의 정보(URL, 타입, 사이즈). 
-      {                                  // 사용자의 기기에 적합한 것을 선택할 수 있도록 여러 개를 추가하는 것이 좋다.
-        "src": "favicon.ico",
-        "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/x-icon"
-      },
-      {
-        "src": "logo192.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "logo512.png",
-        "type": "image/png",
-        "sizes": "512x512"
+      const CACHE = 'pwabuilder-page';
+
+      const offlineFallbackPage = 'offline.html';
+
+      self.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'SKIP_WAITING') {
+          self.skipWaiting();
+        }
+      });
+
+      self.addEventListener('install', async (event) => {
+        event.waitUntil(
+          caches.open(CACHE).then((cache) => cache.add(offlineFallbackPage))
+        );
+      });
+
+      if (workbox.navigationPreload.isSupported()) {
+        workbox.navigationPreload.enable();
       }
-    ]
-  }
 
-  // 웹 manifest를 위한 최소 요구 사항은 name과 적어도 하나(src, size, type을 포함)의 아이콘이다. 
-  // description, short_name, start_url은 권장사항입니다.
+      self.addEventListener('fetch', (event) => {
+        if (event.request.mode === 'navigate') {
+          event.respondWith(
+            (async () => {
+              try {
+                const preloadResp = await event.preloadResponse;
+
+                if (preloadResp) {
+                  return preloadResp;
+                }
+
+                const networkResp = await fetch(event.request);
+                return networkResp;
+              } catch (error) {
+                const cache = await caches.open(CACHE);
+                const cachedResp = await cache.match(offlineFallbackPage);
+                return cachedResp;
+              }
+            })()
+          );
+        }
+      });   
+   ```
+   
+   service worker 파일을 만들었다면 offline.html이란 이름으로 오프라인일 때 보여줄 화면을 만들어줍니다.
+   <br>그리고 오프라인 파일은 `head`영역에 추가하지 않아도 됩니다.
+
+<br>
+
+## index.html
+PWA 적용을 위한 html파일 작성은 대략 아래와 같습니다.
+```
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/images/icons/icon-512x512.png">
+    <link rel="icon" type="image/x-icon" href="icons/icon-72x72.png">
+
+    <script src="main.js"></script>
+    <script type="module">
+      import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+      const el = document.createElement('pwa-update');
+      document.body.appendChild(el);
+    </script>
+
+    <title>Title area</title>
+  </head>
 ```
 
 <br>
 
 ## 유용한 사이트 또는 툴
- - [PWA builder](https://www.pwabuilder.com) : 웹앱이 PWA화 되기에 적합한지 검사할 수 있고, 부족한 파일들을 생성시켜줘서 간편하게 스토어에 런칭할 수 있게 해줍니다.
+ - [PWA builder](https://www.pwabuilder.com) : 웹앱이 PWA화 되기에 적합한지 검사할 수 있고,
+ 부족한 파일들을 생성시켜줘서 간편하게 스토어에 런칭할 수 있게 해줍니다.
  - lighthouse : 더욱 디테일한 체크를 하고싶다면 확장프로그램을 설치하면 확인할 수 있습니다.
  - [Maskable.app](https://maskable.app/editor) : PWA를 위한 아이콘을 만들 수 있는 사이트입니다.
- - [깃헙 페이지를 위한 serviceWorker](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e) : 깃헙 페이지로 웹앱을 만들 때 참고할만한 service worker 템플릿입니다.
+ - [깃헙 페이지를 위한 serviceWorker](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e) :
+ 깃헙 페이지로 웹앱을 만들 때 참고할만한 service worker 템플릿입니다.
+ - [Next steps for building your Progressive Web App (PWA)](https://github.com/pwa-builder/pwabuilder-web/blob/V2/src/assets/next-steps.md)
   
 <br>  
   
